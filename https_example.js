@@ -9,7 +9,23 @@ function cc(desc, arg, d){
 
 
 var https = require('https');
-c('ididit')
+
+var options = {
+  host: 'www.example.org',
+  path: '/'
+};
+
+var callback = function() {
+  c('In response handler callback!');
+}
+
+c('making the request');
+
+https.request(options, callback).end();
+
+c('made the request');
+
+
 
 
 
