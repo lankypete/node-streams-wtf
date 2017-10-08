@@ -11,13 +11,17 @@ function cc(desc, arg, d){
 var https = require('https');
 
 var options = {
-  host: 'www.example.org',
-  path: '/'
+  host: 'stream-large-file.herokuapp.com',
+  path: '/give-me-stuff-now'
 };
 
 var callback = function(response) {
   c('In response handler callback!');
-  console.log('response: ', response)
+  response.on('data', function(chunk) {
+    console.log('[-- CHUNK OF LENGTH ' + chunk.length + '--]');
+    cd()
+    console.log(chunk.toString());
+  });
 }
 
 c('making the request');
